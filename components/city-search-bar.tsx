@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 
 import { CitySearch } from "@/types/city-result";
-import { getCity } from "@/api/city-search";
+import { getCity } from "@/apis/city-search";
 
 import styles from "./css/top-bar.module.css";
 

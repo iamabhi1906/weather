@@ -45,8 +45,7 @@ export function getWeatherVideo(weatherId: number, icon: string) {
 
   if (weatherId === 800) return isNight ? "clear_night.mp4" : "clear_day.mp4";
 
-  if (weatherId === 801)
-    return isNight ? "clear_night.mp4" : "cloudy.mp4";
+  if (weatherId === 801) return isNight ? "clear_night.mp4" : "cloudy.mp4";
 
   if (weatherId === 802) return "cloudy.mp4";
 

@@ -34,7 +34,7 @@
   --weather-subtle-text: #e4e1e1;
   --weather-tile-bg: rgba(248, 248, 248, 0.1);
   --weather-border: rgba(223, 223, 223, 0.9);
-  background: rgba(251, 251, 251, 0.2) !important;
+  background: rgba(251, 251, 251, 0.15) !important;
 }
 
 .nightPaper {

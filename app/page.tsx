@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { getCoordinates } from "@/services/current-location";
-import WeatherAPI from "@/api/weather";
+import WeatherAPI from "@/apis/weather";
 import { OneCallResponse } from "@/types/weather-api";
 import { CitySearch, CitySearchResult } from "@/types/city-result";
 import { fetchCityInfo } from "@/services/city-info";
@@ -16,11 +16,13 @@ import { formatLocalTime, getGreeting } from "@/lib/time";
 import HourlyForecast from "@/components/hourly-forecast";
 import MiniWeatherCondition from "@/components/mini-weather-condition";
 import { cityFallback } from "@/lib/city";
+import BackgroundSelector from "@/components/backgroud-select";
 
 export default function Home() {
   const [weather, setWeather] = useState<OneCallResponse | null>(null);
   const [city, setCity] = useState<CitySearchResult>();
   const [error, setError] = useState<string | null>(null);
+  const [videoSrc, setVideoSrc] = useState<string>();
 
   async function loadWeather(
     coordinate: { latitude: number; longitude: number },
@@ -29,7 +31,11 @@ export default function Home() {
     setError(null);
     const weatherData = await WeatherAPI.getWeather(coordinate);
     setWeather(weatherData);
-
+    const weatherVideoSrc = getWeatherVideo(
+      weatherData.current.weather[0].id,
+      weatherData.current.weather[0].icon,
+    );
+    setVideoSrc(weatherVideoSrc);
     try {
       const city = await fetchCityInfo(coordinate);
       setCity(city);
@@ -82,10 +88,6 @@ export default function Home() {
   const condition = currentWeather?.main || "Weather";
   const isNight = currentWeather?.icon.endsWith("n") ?? false;
   const hourly = weather.hourly.slice(1, 7);
-  const videoSrc = getWeatherVideo(
-    currentWeather?.id ?? 800,
-    currentWeather?.icon ?? "01d",
-  );
 
   return (
     <Box className={styles.page}>
@@ -100,13 +102,20 @@ export default function Home() {
         <source src={`/videos/${videoSrc}`} type="video/mp4" />
       </video>
       <Box className={styles.videoOverlay} />
-
       <Paper
         className={`${styles.paper} ${isNight ? styles.nightPaper : styles.dayPaper}`}
         elevation={3}
       >
         <Box className={styles.mainPanel}>
           <TopBar city={city} onCitySelect={handleCitySelect} />
+          {/* <BackgroundSelector
+            weatherId={currentWeather?.id ?? 800}
+            icon={currentWeather?.icon ?? "01d"}
+            onChange={(video) => {
+              console.log(video);
+              return setVideoSrc(video);
+            }}
+          /> */}
           <Box className={styles.centerWeather}>
             <MainWeatherInfo weather={weather} />
           </Box>
@@ -129,7 +138,6 @@ export default function Home() {
             current={weather.current}
             condition={condition}
           />
-
           <HourlyForecast hourly={hourly} timezone={weather.timezone_offset} />
         </Box>
       </Paper>
