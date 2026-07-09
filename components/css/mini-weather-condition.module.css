@@ -1,0 +1,44 @@
+.currentMini {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.miniTemp {
+  grid-row: span 2;
+  font-size: 3rem !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  color: var(--weather-soft-text, #666666) !important;
+}
+
+.miniMetric {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: var(--weather-text, #111111) !important;
+}
+
+.miniMetric svg {
+  width: 18px;
+  height: 18px;
+  color: var(--weather-muted-text, #8a8a8a) !important;
+}
+
+.feelsLike {
+  margin-top: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--weather-muted-text, #d7d5d5) !important;
+}
+
+.sideCondition {
+  margin-top: 18px !important;
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  color: var(--weather-soft-text, #666666) !important;
+}

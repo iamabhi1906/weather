@@ -1,0 +1,32 @@
+.topBarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.cityInfo {
+  font-weight: 500 !important;
+  color: var(--weather-soft-text, #666666) !important;
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+}
+
+.searchBar {
+  max-width: 280px;
+  min-width: 220px;
+}
+
+@media (max-width: 760px) {
+  .topBarWrapper {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .searchBar {
+    order: 3;
+    max-width: none;
+    width: 100%;
+  }
+}
