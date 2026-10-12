@@ -108,14 +108,14 @@ export default function Home() {
       >
         <Box className={styles.mainPanel}>
           <TopBar city={city} onCitySelect={handleCitySelect} />
-          {/* <BackgroundSelector
+          <BackgroundSelector
             weatherId={currentWeather?.id ?? 800}
             icon={currentWeather?.icon ?? "01d"}
             onChange={(video) => {
               console.log(video);
               return setVideoSrc(video);
             }}
-          /> */}
+          />
           <Box className={styles.centerWeather}>
             <MainWeatherInfo weather={weather} />
           </Box>
